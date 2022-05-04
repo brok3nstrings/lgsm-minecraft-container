@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+  linuxgsm:
+    image: "ghcr.io/gameservermanagers/linuxgsm-docker:latest"
+    container_name: mcserver
+    environment:
+      - GAMESERVER=mcserver
+      - LGSM_GITHUBUSER=GameServerManagers
+      - LGSM_GITHUBREPO=LinuxGSM
+      - LGSM_GITHUBBRANCH=master
+    volumes:
+      - /path/to/serverfiles:/home/linuxgsm/serverfiles
+      - /path/to/log:/home/linuxgsm/log
+      - /path/to/config-lgsm:/home/linuxgsm/lgsm/config-lgsm
+    ports:
+      - "25565:25565/tcp"
+      - "25565:25565/udp"
+      - "19132:19132/udp"
+      - "19133:19133/udp"
+    restart: unless-stopped
